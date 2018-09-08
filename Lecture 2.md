@@ -60,4 +60,18 @@ shared_ptr<span class="token operator">&lt;</span>wheel<span class="token operat
 <pre class=" language-cpp"><code class="prism  language-cpp">shared_ptr<span class="token operator">&lt;</span>my_type<span class="token operator">&gt;</span> q <span class="token operator">=</span> make_shared<span class="token operator">&lt;</span>my_type<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
 </code></pre>
 <p>Такое использование не делает 2 аллокации (на <code>counter</code> и <code>obj</code>), а сделает один общий объект -&gt; 1 аллокация</p>
+<h2 id="weak_pointer">Weak_pointer</h2>
+<p>Хранит указатель на <code>shared_counter</code><br>
+Это позволяет удалить объект до того, как будут удалены все <code>weak_ptr</code> (хранится еще и <code>weak_count</code>)  (<strong>не работает при make_shared, ибо 1 аллокация</strong>)</p>
+<pre class=" language-cpp"><code class="prism  language-cpp">map<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> weak_pointer<span class="token operator">&lt;</span>image<span class="token operator">&gt;&gt;</span> cache<span class="token punctuation">;</span>
+</code></pre>
+<p>Позволит выгрузить из кэша картинку, с <code>shared_ptr</code> картинки будут в кэше до его удаления</p>
+<h2 id="smart-poiters--наследование">Smart poiters + наследование</h2>
+<pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">struct</span> B <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">struct</span> D <span class="token operator">:</span> B <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+shared_prt<span class="token operator">&lt;</span>B<span class="token operator">&gt;</span> b<span class="token punctuation">;</span>
+shared_prt<span class="token operator">&lt;</span>D<span class="token operator">&gt;</span> d <span class="token operator">=</span> static_pointer_cast<span class="token operator">&lt;</span>D<span class="token operator">&gt;</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token operator">?</span><span class="token punctuation">)</span>
+</code></pre>
+<p><strong>Для shared_ptr</strong></p>
 
