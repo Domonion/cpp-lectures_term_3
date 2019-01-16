@@ -66,7 +66,7 @@ T<span class="token operator">&amp;</span> <span class="token function">declval<
 Что возвращает этот <strong>decltype</strong>?<br>
 <code>prvalue - T, decltype(a) = int</code><br>
 <code>lvalue - T&amp;, decltype((a)) = int&amp;</code><br>
-<code>xvalue - T&amp;&amp;</code></li>
+<code>xvalue - T&amp;&amp;</code> (rvalue находящийся на грани уничтожения)</li>
 </ol>
 <pre class=" language-cpp"><code class="prism  language-cpp">	T <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 	T a <span class="token operator">=</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//f() - prvalue, можем не вызывать конструктор</span>
