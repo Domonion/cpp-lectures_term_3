@@ -17,9 +17,11 @@
 <pre class=" language-cpp"><code class="prism  language-cpp">big_struct a<span class="token punctuation">;</span>
 <span class="token function">f</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> 
 </code></pre>
+<p>Надо скопировать, а в функцию передается ссылка</p>
 <p>Как можно реализовать?</p>
 <p><strong>I</strong></p>
 <pre class=" language-cpp"><code class="prism  language-cpp">big_struct a<span class="token punctuation">;</span>
+
 <span class="token punctuation">{</span>
 	big_struct copy <span class="token operator">=</span> a<span class="token punctuation">;</span>
 	<span class="token function">f</span><span class="token punctuation">(</span>copy<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -198,6 +200,7 @@ T<span class="token operator">&amp;&amp;</span> <span class="token function">mov
 <p>Можно писать в <code>noexcept</code> любое логическое выражение</p>
 <pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">bool</span> <span class="token function">foo</span><span class="token punctuation">(</span>T<span class="token punctuation">)</span> <span class="token keyword">noexcept</span><span class="token punctuation">(</span>enable_if<span class="token operator">&lt;</span><span class="token keyword">noexcept</span><span class="token punctuation">(</span>T<span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token operator">::</span>type<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
+<p>Для работы <code>move</code> при создании объекта (н-р добавление в вектор) требуется <code>noexcept</code> конструктора. Еще это важно для <code>hashCode()</code>(иначе проблемы с рехэшэм и надо хранить хэш рядом с объектом, а спрашивать его только при вставке)</p>
 <h3 id="еще-применение-rvalue">Еще применение rvalue</h3>
 <p><strong>Forwarding</strong></p>
 <pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">void</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -246,6 +249,7 @@ T<span class="token operator">&amp;&amp;</span> <span class="token function">mov
 	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<p>Наши <code>move</code> и <code>forward</code> полностью совпадают. В реале же они написаны немного по разному, так как у <code>forward</code> есть шаблонный параметр, чтобы всегда происходил <code>move</code> (вроде??)</p>
 <p>Для многих аргументов</p>
 <pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> T<span class="token operator">&gt;</span>
 <span class="token keyword">void</span> <span class="token function">g</span><span class="token punctuation">(</span>T<span class="token operator">&amp;&amp;</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
