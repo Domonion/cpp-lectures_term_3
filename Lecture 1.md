@@ -18,8 +18,9 @@ set<span class="token operator">&lt;</span>unit<span class="token operator">*</s
 <pre class=" language-cpp"><code class="prism  language-cpp">unit<span class="token operator">*</span> <span class="token function">toUnit</span><span class="token punctuation">(</span>node<span class="token operator">*</span> p<span class="token punctuation">)</span> <span class="token punctuation">}</span>
 	<span class="token keyword">return</span> <span class="token punctuation">(</span>unit<span class="token operator">*</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span><span class="token punctuation">)</span>p <span class="token operator">-</span> <span class="token function">offsetof</span><span class="token punctuation">(</span>unit<span class="token punctuation">,</span> link<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span> 
-
-<span class="token keyword">struct</span> unit <span class="token operator">:</span> node<span class="token operator">&lt;</span><span class="token keyword">struct</span> all_units_tag<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+</code></pre>
+<p>В с++ унаследоваться и просто статик каст от базового к производному</p>
+<pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">struct</span> unit <span class="token operator">:</span> node<span class="token operator">&lt;</span><span class="token keyword">struct</span> all_units_tag<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 <span class="token punctuation">}</span>
 
 intrusive_list<span class="token operator">&lt;</span>unit<span class="token punctuation">,</span> <span class="token keyword">struct</span> all_units_tag<span class="token operator">&gt;</span><span class="token punctuation">;</span>
@@ -35,7 +36,7 @@ intrusive_list<span class="token operator">&lt;</span>unit<span class="token pun
 </thead>
 <tbody>
 <tr>
-<td>memory size</td>
+<td>memory size (не всегда)</td>
 <td>less? (+)</td>
 <td>greater?</td>
 </tr>
@@ -43,6 +44,11 @@ intrusive_list<span class="token operator">&lt;</span>unit<span class="token pun
 <td>number of alloc</td>
 <td>smaller (+)</td>
 <td>bigger</td>
+</tr>
+<tr>
+<td>скорость итераций</td>
+<td>обычно быстрее</td>
+<td>обычно медленнее</td>
 </tr>
 <tr>
 <td>require object modification</td>
