@@ -21,5 +21,6 @@ a<span class="token punctuation">.</span><span class="token function">emplace</s
 <h3 id="variant">Variant</h3>
 <pre class=" language-cpp"><code class="prism  language-cpp">variant<span class="token operator">&lt;</span>A<span class="token punctuation">,</span> B<span class="token punctuation">,</span> C<span class="token operator">&gt;</span> v<span class="token punctuation">;</span>
 </code></pre>
-<p>Хранит один из элементов типа <code>A</code>,  <code>B</code> или <code>C</code> (или больше)</p>
+<p>Хранит один из элементов типа <code>A</code>,  <code>B</code> или <code>C</code> (или больше) (конкретнее - типобезопасный union)<br>
+По умолчанию имеет значение первого типа.</p>
 
