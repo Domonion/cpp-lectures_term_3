@@ -80,7 +80,7 @@ ________________
 </code></pre>
 <h3 id="return-value-optimization-rvo">Return value optimization (RVO)</h3>
 <p>И еще</p>
-<pre class=" language-cpp"><code class="prism  language-cpp">strict big_struct <span class="token punctuation">{</span>
+<pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">struct</span> big_struct <span class="token punctuation">{</span>
 	<span class="token function">big_struct</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token punctuation">,</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
@@ -108,9 +108,9 @@ big_struct <span class="token function">g</span><span class="token punctuation">
 <pre class=" language-cpp"><code class="prism  language-cpp">big_struct <span class="token function">g</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	big_struct <span class="token function">tmp</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-	tmp<span class="token punctuation">.</span><span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	tmp<span class="token punctuation">.</span><span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-	<span class="token keyword">return</span> result
+	<span class="token keyword">return</span> tmp<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Зачем делать лишнее копирование?</p>
