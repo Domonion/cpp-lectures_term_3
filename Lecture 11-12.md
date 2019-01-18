@@ -19,7 +19,7 @@
 		std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Hello"</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	t<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//Дождись пока поток закончится</span>
-	t<span class="token punctuation">.</span><span class="token function">detach</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//Отвяжись от операционной системы (нужен редко)</span>
+	t<span class="token punctuation">.</span><span class="token function">detach</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//Отвяжись от вызывающего потока (нужен редко)</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <h3 id="race-condition">Race condition</h3>
