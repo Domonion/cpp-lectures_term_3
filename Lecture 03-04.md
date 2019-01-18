@@ -253,7 +253,7 @@ T<span class="token operator">&amp;&amp;</span> <span class="token function">mov
 	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>Наши <code>move</code> и <code>forward</code> полностью совпадают. В реале же они написаны немного по разному, так как у <code>forward</code> есть шаблонный параметр, чтобы всегда происходил <code>move</code> (вроде??)</p>
+<p>Наши <code>move</code> и <code>forward</code> полностью совпадают. В реале же они написаны немного по разному, так как у <code>forward</code> есть шаблонный параметр, иначе без него будет происходить <code>move</code></p>
 <p>Для многих аргументов</p>
 <pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> T<span class="token operator">&gt;</span>
 <span class="token keyword">void</span> <span class="token function">g</span><span class="token punctuation">(</span>T<span class="token operator">&amp;&amp;</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
