@@ -78,6 +78,7 @@ ________________
 	<span class="token function">f</span><span class="token punctuation">(</span>tmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<p>0 копирований ыыы</p>
 <h3 id="return-value-optimization-rvo">Return value optimization (RVO)</h3>
 <p>И еще</p>
 <pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">struct</span> big_struct <span class="token punctuation">{</span>
@@ -89,17 +90,19 @@ big_struct <span class="token function">g</span><span class="token punctuation">
 	<span class="token keyword">return</span> <span class="token function">big_strust</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
-big_struct <span class="token function">g</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+big_struct f<span class="token punctuation">;</span>
+<span class="token function">g</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
 </code></pre>
 <p><strong>Наивный вариант</strong></p>
-<pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">void</span> <span class="token function">g</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token operator">*</span> result<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">void</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token operator">*</span> result<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	<span class="token keyword">char</span> tmp<span class="token punctuation">[</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>big_struct<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 	<span class="token function">big_struct_ctor</span><span class="token punctuation">(</span>tmp<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token function">big_struct_ctor</span><span class="token punctuation">(</span>result<span class="token punctuation">,</span> <span class="token punctuation">(</span>big_struct<span class="token operator">&amp;</span><span class="token punctuation">)</span>tmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p><strong>Нормальный</strong></p>
-<pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">void</span> <span class="token function">g</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token operator">*</span> result<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">void</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token operator">*</span> result<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	<span class="token function">big_struct_ctor</span><span class="token punctuation">(</span>result<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
@@ -168,6 +171,7 @@ T<span class="token operator">&amp;&amp;</span> <span class="token function">mov
 	<span class="token keyword">return</span> <span class="token keyword">static_cast</span><span class="token operator">&lt;</span>T<span class="token operator">&amp;&amp;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<p>Не совсем корректно, еще <code>remove_reference</code></p>
 <p><strong>Типичные ошибки</strong></p>
 <ol>
 <li>
