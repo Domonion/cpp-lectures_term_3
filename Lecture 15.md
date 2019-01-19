@@ -3,6 +3,23 @@
 
 ---
 
+<h2 id="ranges">Ranges</h2>
+<pre class=" language-cpp"><code class="prism  language-cpp">std<span class="token operator">::</span>transform
+std<span class="token operator">::</span>copy_if
+</code></pre>
+<p>Вместо того чтобы делать цикл который делай не пойми что можно запилить набор функциональных штук выше, которые выполнят нашу задачу</p>
+<p>Удобно их собирать в некоторые “контейнеры” — <strong>view</strong>. Самый внешний такой вью называется <strong>Ranges v3</strong> (оно же библиотека)</p>
+<p>Насколько понял, оно считает это все постепенно, а не все сразу (намек на корутины?), но можно сказать посчитай все сразу.</p>
+<h3 id="push-and-pull-strategies">Push and pull strategies</h3>
+<p>Пусть у нас есть такая последовательность вызовов <code>h(g(f(...)))</code></p>
+<p><strong>Pull model</strong> (это вьюхи)<br>
+Стратегия следующая: внешний цикл хочет прочитать данные у <code>h</code>,  <code>h</code> в свою очередь спрашивает их у <code>g</code>,  а потом с этими данными что-то делает. <code>g</code> же спрашивает их у <code>f</code> и т. д.</p>
+<p><strong>Push model</strong> (а это уже не вьюха, это что-то другое)<br>
+Другая стратегия: Мы говорим <code>f</code> “запиши нам данные”, но <code>f</code> ничего не хранит и предает их в <code>g</code>, <code>g</code> что-то тоже ничего не хранит и передает их в <code>h</code> и т. д.</p>
+<p>Если мы хотим дерево, то если <code>g</code> зависит от двух <code>f</code>, то <code>push</code> нереализуема, а если <code>g</code> разбивается на две <code>h</code>, то неосуществима <code>pull</code>.</p>
+<p><strong>Например:</strong><br>
+<code>cin</code> работает по <code>pull</code> модели<br>
+<code>cout</code> работает по <code>push</code> модели</p>
 <h2 id="stackless-coroutines">Stackless coroutines</h2>
 <p>Основаны на том, что компилятор за нас будет переписывать код</p>
 <pre class=" language-cpp"><code class="prism  language-cpp">generator<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> <span class="token function">tenInts</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
