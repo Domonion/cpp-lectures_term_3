@@ -5,8 +5,8 @@
 
 <h2 id="offtop-text-encoding">Offtop, Text encoding</h2>
 <p><strong>Unicode</strong><br>
-Таблица 0…0x10FFFF - <strong>code point</strong><br>
-Их преобразуют в различные последовательности символов (<strong>code unit</strong>)</p>
+Таблица 0…0x10FFFF - <strong>code point</strong> (число из пространства кодовых чисел юникода)<br>
+Их преобразуют в различные последовательности символов (<strong>code unit</strong> (минимальная последовательность битов, кодирующая unit закодированного текста) )</p>
 <p>В байты - <strong>UTF-8</strong><br>
 В 2-байтовые числа - <strong>UTF-16</strong><br>
 В 32-битные числа - <strong>UTF-32</strong></p>
