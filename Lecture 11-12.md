@@ -131,7 +131,7 @@ locked<span class="token punctuation">.</span><span class="token function">compa
 </code></pre>
 <p>Condition variable:</p>
 <ol>
-<li><code>wait()</code></li>
+<li><code>wait(unique_lock)</code> - залочиться и ждать</li>
 <li><code>notify_one()</code> - разлочить кого-то одного</li>
 <li><code>notify_all()</code> - разлочить всех</li>
 </ol>
