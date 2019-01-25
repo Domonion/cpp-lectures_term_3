@@ -135,5 +135,5 @@ locked<span class="token punctuation">.</span><span class="token function">compa
 <li><code>notify_one()</code> - разлочить кого-то одного</li>
 <li><code>notify_all()</code> - разлочить всех</li>
 </ol>
-<p>Печально только что мы будем всех, но только одному удается продолжить выполнение, остальные опять засыпают (<strong>Spurious wakeups</strong>). Для этого и есть <code>notify_one()</code></p>
+<p>Печально только что мы будем всех, но только одному удается продолжить выполнение, остальные опять засыпают. Для этого и есть <code>notify_one()</code></p>
 
